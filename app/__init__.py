@@ -3,11 +3,14 @@ from flask import Flask
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+    app.secret_key = b'f0e97d3012eed1c2939ac1a62ce1e8d455e86fa9da47b26c94a9af4119be29d6'
 
     @app.route("/")
     def hello():
         return "<h1>hello world</h1>"
+
+    from . import database
+    database.init_db(app)
 
     from .user import bp_user
     app.register_blueprint(bp_user.bp)
