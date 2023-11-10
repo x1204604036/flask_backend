@@ -1,9 +1,12 @@
 from flask import Flask
+from app.utils.exception_handler import init_error_exception
 
 
 def create_app():
     app = Flask(__name__)
     app.secret_key = b'f0e97d3012eed1c2939ac1a62ce1e8d455e86fa9da47b26c94a9af4119be29d6'
+
+    init_error_exception(app)
 
     @app.route("/")
     def hello():
