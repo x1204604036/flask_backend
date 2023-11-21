@@ -2,6 +2,8 @@ from flask import Flask
 from app.utils.exception_handler import init_error_exception
 import logging.config
 from app.config import logging_config
+from app.utils.middlewares.middlewares import register_middleware
+from app.utils.init_g_object import init_g_object
 
 
 def create_app():
@@ -10,6 +12,9 @@ def create_app():
 
     init_error_exception(app)
     logging.config.dictConfig(logging_config.LoggingConfig)
+
+    init_g_object(app)
+    register_middleware(app)
 
     @app.route("/")
     def hello():

@@ -68,7 +68,7 @@ def logout():
 
 
 @bp.route("/user_info", methods=("POST",))
-@login_required
+# @login_required
 def get_user_info():
     user_id = session.get("user_id")
 
