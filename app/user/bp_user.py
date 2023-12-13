@@ -2,9 +2,11 @@ from flask import Blueprint, request, session, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.user import User
 from app.database import db_session
-
+from app.user.views import UserRegisterView
 
 bp = Blueprint("user", __name__, url_prefix="/user")
+
+bp.add_url_rule("/register", view_func=UserRegisterView.as_view("register"))
 
 
 def register():
